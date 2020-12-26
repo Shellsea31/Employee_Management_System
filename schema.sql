@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS management_db;
 CREATE DATABASE management_db;
 USE management_db;
 
-
+-- TABLES
 CREATE TABLE department(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 name VARCHAR(30) NOT NULL
@@ -25,3 +25,14 @@ FOREIGN KEY(role_id) REFERENCES role(id),
 manager_id INT,
 FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
+
+
+-- ADDING TO TABLES (DEPARTMENTS)
+INSERT INTO department(name)
+VALUES("sales");
+
+INSERT INTO department(name)
+VALUES("finance"), ("legal"), ("engineering");
+
+SELECT * FROM department;
+
