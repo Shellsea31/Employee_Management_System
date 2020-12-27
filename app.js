@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const obj = require("./modules/questions")
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -12,13 +13,16 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
   if (err) throw err;
   console.log(`connected as id: ${connection.threadId}`);
-  findAllDepart();
+  //   findAllDepart();
+  obj.menu()
   connection.end();
 });
 
-const findAllDepart = () => {
-  connection.query("SELECT * FROM department", (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-};
+// const findAllDepart = () => {
+//   connection.query("SELECT * FROM department", (err, res) => {
+//     if (err) throw err;
+//     console.log(res);
+//   });
+// };
+
+
