@@ -42,6 +42,20 @@ const startMenu = () => {
 
 const viewData = () => {
   inquirer.prompt(questions.view).then((answer) => {
-    console.log(answer);
+    switch (answer.view) {
+      case "Departments":
+        break;
+      case "Roles":
+        break;
+      case "Employees":
+        break;
+      case "Back to start":
+        startMenu();
+        break;
+
+      default:
+        break;
+    }
+    // console.log(answer);
   });
 };
