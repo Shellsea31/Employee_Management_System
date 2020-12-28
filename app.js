@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const cTable = require("console.table");
 const questions = require("./lib/questions");
 const inquirer = require("inquirer");
+const queries = require("./lib/queries");
 
 // establish connection to database
 const connection = mysql.createConnection({
@@ -44,6 +45,7 @@ const viewData = () => {
   inquirer.prompt(questions.view).then((answer) => {
     switch (answer.view) {
       case "Departments":
+        queries.viewDepartments();
         break;
       case "Roles":
         break;
@@ -54,8 +56,8 @@ const viewData = () => {
         break;
 
       default:
+        console.log(answer);
         break;
     }
-    // console.log(answer);
   });
 };
