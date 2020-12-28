@@ -17,7 +17,6 @@ connection.connect((err) => {
   if (err) throw err;
   console.log(`connected as id: ${connection.threadId}`);
   startMenu();
-  connection.end();
 });
 
 const startMenu = () => {
@@ -31,6 +30,7 @@ const startMenu = () => {
       case "Update database":
         break;
       case "Exit":
+        connection.end();
         break;
 
       default:
