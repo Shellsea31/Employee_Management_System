@@ -22,7 +22,21 @@ connection.connect((err) => {
 
 const startMenu = () => {
   inquirer.prompt(questions.startMenu).then((answer) => {
-    console.log(answer);
+    switch (answer.choice) {
+      case "Add to database":
+        break;
+      case "View database":
+        viewData();
+        break;
+      case "Update database":
+        break;
+      case "Exit":
+        break;
+
+      default:
+        console.log(answer);
+        break;
+    }
   });
 };
 
