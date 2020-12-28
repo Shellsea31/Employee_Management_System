@@ -2,37 +2,29 @@ DROP DATABASE IF EXISTS management_db;
 CREATE DATABASE management_db;
 USE management_db;
 
--- TABLES
+
 CREATE TABLE department(
-id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-name VARCHAR(30) NOT NULL
+id INT AUTO_INCREMENT NOT NULL,
+name VARCHAR(30) NOT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE role(
-id INT PRIMARY KEY NOT NULL,
+id INT AUTO_INCREMENT NOT NULL,
+PRIMARY KEY (id),
 title VARCHAR(30) NOT NULL,
 salary DECIMAL(10,2) NOT NULL,
-department_id INT NOT NULL,
+department_id INT, 
 FOREIGN KEY (department_id) REFERENCES department (id)
 );
 
 CREATE TABLE employee(
-id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+id INT AUTO_INCREMENT NOT NULL,
+PRIMARY KEY (id),
 first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
-role_id INT NOT NULL,
+role_id INT,
 FOREIGN KEY(role_id) REFERENCES role(id),
 manager_id INT,
 FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
-
-
--- ADDING TO TABLES (DEPARTMENTS)
-INSERT INTO department(name)
-VALUES("sales");
-
-INSERT INTO department(name)
-VALUES("finance"), ("legal"), ("engineering");
-
-SELECT * FROM department;
-

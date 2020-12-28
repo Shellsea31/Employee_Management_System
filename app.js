@@ -48,8 +48,10 @@ const viewData = () => {
         queries.viewDepartments();
         break;
       case "Roles":
+        queries.viewRoles();
         break;
       case "Employees":
+        queries.viewEmployees();
         break;
       case "Back to start":
         startMenu();
