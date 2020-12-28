@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-const cTable = require("console.table");
 const questions = require("./lib/questions");
 const inquirer = require("inquirer");
 const queries = require("./lib/queries");
