@@ -21,9 +21,13 @@ connection.connect((err) => {
 });
 
 const startMenu = () => {
-  inquirer.prompt(questions.startMenu).then((answers) => {
-    console.log(answers);
+  inquirer.prompt(questions.startMenu).then((answer) => {
+    console.log(answer);
   });
 };
 
-
+const viewData = () => {
+  inquirer.prompt(questions.view).then((answer) => {
+    console.log(answer);
+  });
+};
