@@ -78,17 +78,42 @@ const addData = () => {
     switch (answer.add) {
       case "A department":
         inquirer.prompt(questions.addDepartmentInfo).then((answer) => {
-          console.log(answer);
+          queries.addDepartment(answer.newDepartment, function () {
+            startMenu();
+          });
         });
         break;
       case "A role":
         inquirer.prompt(questions.addRoleInfo).then((answer) => {
-          console.log(answer);
+          queries.addRole(
+            answer.newRoleTitle,
+            answer.newRoleSalary,
+            answer.departmentId,
+            function () {
+              startMenu();
+            }
+          );
         });
         break;
       case "An employee":
         inquirer.prompt(questions.addEmployeeInfo).then((answer) => {
-          console.log(answer);
+          let managerID;
+
+          if (answer.managerId === "null") {
+            managerID = null;
+          } else {
+            managerID = answer.managerId;
+          }
+
+          queries.addEmployee(
+            answer.firstName,
+            answer.lastName,
+            answer.roleId,
+            managerID,
+            function () {
+              startMenu();
+            }
+          );
         });
         break;
       case "Back to start":
