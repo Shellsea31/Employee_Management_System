@@ -24,6 +24,7 @@ const startMenu = () => {
   inquirer.prompt(questions.startMenu).then((answer) => {
     switch (answer.choice) {
       case "Add to database":
+        addData();
         break;
       case "View database":
         viewData();
@@ -47,17 +48,17 @@ const viewData = () => {
   inquirer.prompt(questions.view).then((answer) => {
     switch (answer.view) {
       case "Departments":
-        queries.viewDepartments(function(){
-          startMenu()
+        queries.viewDepartments(function () {
+          startMenu();
         });
         break;
       case "Roles":
-        queries.viewRoles(function(){
-          startMenu()
+        queries.viewRoles(function () {
+          startMenu();
         });
         break;
       case "Employees":
-        queries.viewEmployees(function(){
+        queries.viewEmployees(function () {
           startMenu();
         });
         break;
@@ -72,6 +73,8 @@ const viewData = () => {
   });
 };
 
-const addData = ()=>{
-  inquirer.prompt().then((answer) =>{console.log(answer)})
-}
+const addData = () => {
+  inquirer.prompt(questions.add).then((answer) => {
+    console.log(answer);
+  });
+};
