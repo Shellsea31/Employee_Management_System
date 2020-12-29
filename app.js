@@ -82,12 +82,14 @@ const addData = () => {
         });
         break;
       case "A role":
-        inquirer.prompt(questions.addRoleInfo).then((answer)=>{
-          console.log(answer)
+        inquirer.prompt(questions.addRoleInfo).then((answer) => {
+          console.log(answer);
         });
         break;
       case "An employee":
-        console.log("employee");
+        inquirer.prompt(questions.addEmployeeInfo).then((answer) => {
+          console.log(answer);
+        });
         break;
       case "Back to start":
         startMenu();
