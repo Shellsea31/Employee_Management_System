@@ -67,7 +67,7 @@ const viewData = () => {
         break;
 
       default:
-        console.log(answer);
+        console.log("failed");
         break;
     }
   });
@@ -75,6 +75,21 @@ const viewData = () => {
 
 const addData = () => {
   inquirer.prompt(questions.add).then((answer) => {
-    console.log(answer);
+    switch (answer.add) {
+      case "A department":
+        console.log('department')
+        break;
+        case "A role":
+        console.log('role')
+        break;
+        case "An employee":
+        console.log('employee')
+        break;
+        case "Back to start":
+        startMenu();
+        break;
+      default: console.log("failed")
+        break;
+    };
   });
 };
