@@ -19,6 +19,7 @@ connection.connect((err) => {
   startMenu();
 });
 
+// starting menu
 const startMenu = () => {
   inquirer.prompt(questions.startMenu).then((answer) => {
     switch (answer.choice) {
@@ -40,6 +41,8 @@ const startMenu = () => {
   });
 };
 
+// function for option to view data
+// each option leads back to startMenu()
 const viewData = () => {
   inquirer.prompt(questions.view).then((answer) => {
     switch (answer.view) {
@@ -68,3 +71,7 @@ const viewData = () => {
     }
   });
 };
+
+const addData = ()=>{
+  inquirer.prompt().then((answer) =>{console.log(answer)})
+}
