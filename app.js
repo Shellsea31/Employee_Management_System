@@ -44,13 +44,19 @@ const viewData = () => {
   inquirer.prompt(questions.view).then((answer) => {
     switch (answer.view) {
       case "Departments":
-        queries.viewDepartments();
+        queries.viewDepartments(function(){
+          startMenu()
+        });
         break;
       case "Roles":
-        queries.viewRoles();
+        queries.viewRoles(function(){
+          startMenu()
+        });
         break;
       case "Employees":
-        queries.viewEmployees();
+        queries.viewEmployees(function(){
+          startMenu();
+        });
         break;
       case "Back to start":
         startMenu();
