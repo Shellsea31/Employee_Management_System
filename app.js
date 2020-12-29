@@ -77,7 +77,7 @@ const addData = () => {
   inquirer.prompt(questions.add).then((answer) => {
     switch (answer.add) {
       case "A department":
-        inquirer.prompt(questions.addDepartmentName).then((answer) => {
+        inquirer.prompt(questions.addDepartmentInfo).then((answer) => {
           console.log(answer);
         });
         break;
