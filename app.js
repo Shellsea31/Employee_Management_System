@@ -77,19 +77,22 @@ const addData = () => {
   inquirer.prompt(questions.add).then((answer) => {
     switch (answer.add) {
       case "A department":
-        console.log('department')
+        inquirer.prompt(questions.addDepartmentName).then((answer) => {
+          console.log(answer);
+        });
         break;
-        case "A role":
-        console.log('role')
+      case "A role":
+        console.log("role");
         break;
-        case "An employee":
-        console.log('employee')
+      case "An employee":
+        console.log("employee");
         break;
-        case "Back to start":
+      case "Back to start":
         startMenu();
         break;
-      default: console.log("failed")
+      default:
+        console.log("failed");
         break;
-    };
+    }
   });
 };
