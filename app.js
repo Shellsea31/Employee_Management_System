@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const questions = require("./lib/questions");
 const inquirer = require("inquirer");
 const queries = require("./lib/queries");
+const cTable = require("console.table");
 
 // establish connection to database
 const connection = mysql.createConnection({
@@ -77,44 +78,54 @@ const addData = () => {
   inquirer.prompt(questions.add).then((answer) => {
     switch (answer.add) {
       case "A department":
-        inquirer.prompt(questions.addDepartmentInfo).then((answer) => {
-          queries.addDepartment(answer.newDepartment, function () {
-            startMenu();
+        // Show current available departments while asking for new department
+        queries.viewDepartments(() => {
+          inquirer.prompt(questions.addDepartmentInfo).then((answer) => {
+            queries.addDepartment(answer.newDepartment, function () {
+              startMenu();
+            });
           });
         });
+
         break;
       case "A role":
-        inquirer.prompt(questions.addRoleInfo).then((answer) => {
-          queries.addRole(
-            answer.newRoleTitle,
-            answer.newRoleSalary,
-            answer.departmentId,
-            function () {
-              startMenu();
-            }
-          );
+        queries.viewRoles(() => {
+          inquirer.prompt(questions.addRoleInfo).then((answer) => {
+            queries.addRole(
+              answer.newRoleTitle,
+              answer.newRoleSalary,
+              answer.departmentId,
+              function () {
+                startMenu();
+              }
+            );
+          });
         });
+
         break;
       case "An employee":
-        inquirer.prompt(questions.addEmployeeInfo).then((answer) => {
-          let managerID;
+        queries.viewEmployees(() => {
+          inquirer.prompt(questions.addEmployeeInfo).then((answer) => {
+            let managerID;
 
-          if (answer.managerId === "null") {
-            managerID = null;
-          } else {
-            managerID = answer.managerId;
-          }
-
-          queries.addEmployee(
-            answer.firstName,
-            answer.lastName,
-            answer.roleId,
-            managerID,
-            function () {
-              startMenu();
+            if (answer.managerId === "null") {
+              managerID = null;
+            } else {
+              managerID = answer.managerId;
             }
-          );
+
+            queries.addEmployee(
+              answer.firstName,
+              answer.lastName,
+              answer.roleId,
+              managerID,
+              function () {
+                startMenu();
+              }
+            );
+          });
         });
+
         break;
       case "Back to start":
         startMenu();
