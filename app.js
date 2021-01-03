@@ -140,6 +140,8 @@ const addData = () => {
   });
 };
 
-const updateData = ()=>{
-  console.log("update data")
-}
+const updateData = () => {
+  inquirer.prompt(questions.update).then((answer) => {
+    console.log(answer);
+  });
+};
