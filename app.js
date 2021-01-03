@@ -31,6 +31,7 @@ const startMenu = () => {
         viewData();
         break;
       case "Update database":
+        updateData();
         break;
       case "Exit":
         connection.end();
@@ -74,6 +75,8 @@ const viewData = () => {
   });
 };
 
+// function for option to add to data
+// each option leads back to startMenu()
 const addData = () => {
   inquirer.prompt(questions.add).then((answer) => {
     switch (answer.add) {
@@ -136,3 +139,7 @@ const addData = () => {
     }
   });
 };
+
+const updateData = ()=>{
+  console.log("update data")
+}
