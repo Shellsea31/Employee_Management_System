@@ -23,6 +23,7 @@ connection.connect((err) => {
 // starting menu
 const startMenu = () => {
   inquirer.prompt(questions.startMenu).then((answer) => {
+    // the options
     switch (answer.choice) {
       case "Add to database":
         addData();
@@ -31,8 +32,9 @@ const startMenu = () => {
         viewData();
         break;
       case "Update database":
-        updateData();
+        updateRole();
         break;
+      // end the program
       case "Exit":
         connection.end();
         break;
@@ -92,6 +94,7 @@ const addData = () => {
 
         break;
       case "A role":
+        // Show current available roles while asking for new role
         queries.viewRoles(() => {
           inquirer.prompt(questions.addRoleInfo).then((answer) => {
             queries.addRole(
@@ -107,6 +110,7 @@ const addData = () => {
 
         break;
       case "An employee":
+        // Show current available employees while asking for new employee
         queries.viewEmployees(() => {
           inquirer.prompt(questions.addEmployeeInfo).then((answer) => {
             let managerID;
@@ -140,11 +144,25 @@ const addData = () => {
   });
 };
 
-const updateData = () => {
+// function for option to update employee role
+// each option leads back to startMenu()
+const updateRole = () => {
   inquirer.prompt(questions.update).then((answer) => {
-    console.log(answer.current, answer.new);
-    queries.updateRole(answer.new, answer.current, function () {
-      startMenu();
-    });
+    switch (answer.table) {
+      case "An employee's role":
+        inquirer.prompt(questions.updateRole).then((answer) => {
+          queries.updateRole(answer.new, answer.current, function () {
+            startMenu();
+          });
+        });
+        break;
+      case "An employee's manager":
+        console.log("An employee's manager");
+        break;
+
+      default:
+        console.log("failed");
+        break;
+    }
   });
 };
