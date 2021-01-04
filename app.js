@@ -142,6 +142,9 @@ const addData = () => {
 
 const updateData = () => {
   inquirer.prompt(questions.update).then((answer) => {
-    console.log(answer);
+    console.log(answer.current, answer.new);
+    queries.updateRole(answer.new, answer.current, function () {
+      startMenu();
+    });
   });
 };
